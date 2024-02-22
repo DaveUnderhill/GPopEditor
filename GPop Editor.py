@@ -6,8 +6,8 @@ class NoteTimelineWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle('Noten Timeline')
-        self.setGeometry(100, 100, 800, 600)
+        self.setWindowTitle('GPop Editor')
+        self.setGeometry(100, 100, 1400, 800)
 
         self.init_ui()
 
