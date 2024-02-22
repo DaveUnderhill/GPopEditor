@@ -53,9 +53,9 @@ class NoteTimelineWindow(QMainWindow):
         
         # Zoomfaktor berechnen
         if event.button == 'up':
-            zoom_factor = 0.9
+            zoom_factor = 0.7
         elif event.button == 'down':
-            zoom_factor = 1.1
+            zoom_factor = 1.3
         else:
             return
         
