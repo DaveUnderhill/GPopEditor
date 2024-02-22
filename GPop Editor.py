@@ -19,7 +19,6 @@ class NoteTimelineWindow(QMainWindow):
         central_widget.setLayout(layout)
 
         label = QLabel('Hier könnte Ihre Noten-Timeline sein!')
-        label.setAlignment(QtCore.Qt.AlignCenter)  # Beachten Sie die Verwendung von QtCore.Qt
         layout.addWidget(label)
 
 
