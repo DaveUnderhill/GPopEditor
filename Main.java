@@ -68,15 +68,37 @@ public class Main {
             MouseWheelListener mouseWheelListener = new MouseWheelListener() {
                 @Override
                 public void mouseWheelMoved(MouseWheelEvent e) {
-                    int notches = e.getWheelRotation();
-                    double zoomFactor = (notches < 0) ? 0.9 : 1.1;
-                    float mousePositionRatio = (float) e.getX() / ((JPanel)e.getSource()).getWidth();
-                    float newZoomCenter = (float)((Main.zoomCenter - mousePositionRatio * Main.zoomLevel) / zoomFactor + mousePositionRatio * Main.zoomLevel);
-                    Main.zoomCenter = Math.max(0, Math.min(1, newZoomCenter));
-                    Main.zoomLevel *= zoomFactor;
+                    int mouseX = e.getX();
+                    int panelWidth = panel.getWidth();
+                    float mousePositionRatio = (float) mouseX / panelWidth;
+                    
+                    // Zoomfaktor berechnen
+                    float zoomChange;
+                    if (e.getWheelRotation() < 0) {
+                        zoomChange = 0.7f;
+                    } else {
+                        zoomChange = 1.3f;
+                    }
+                    
+                    // Neue Breite der Achsen definieren
+                    float newZoomLevel = zoomLevel * zoomChange;
+                    
+                    // Neue Achsenpositionen berechnen
+                    float newZoomCenter = zoomCenter - (zoomCenter - mousePositionRatio) * (1 - zoomChange);
+                    
+                    // Achsenbegrenzungen setzen
+                    zoomLevel = newZoomLevel;
+                    zoomCenter = newZoomCenter;
+                    
+                    // Neuzeichnen der Wellenform
                     panel.repaint();
                 }
             };
+      
+
+            
+            
+            
             
 
             panel.addMouseWheelListener(mouseWheelListener);
